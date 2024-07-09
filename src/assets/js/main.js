@@ -8,14 +8,13 @@ class Carte {
 
   /**
    * Carte.
-   * @param {string} tailwindClasses
    * @param {string} titleText
-   * @param {string} sizeTextSm
-   * @param {string} sizeTextMd
    */
 
-  constructor(titleText) {   
-    this.titleText = titleText;  
+  constructor(titleText, description) {   
+    this.titleText = titleText;
+    this.description = description;
+
   }
 
   /**
@@ -28,6 +27,7 @@ class Carte {
     const spanTitle = document.createElement('span');
     const spanSizeSm = document.createElement('span');
     const spanSizeMd = document.createElement('span');
+    const spanDesc = document.createElement('span');
 
     div.className = "carte bg-black text-white font-black rounded-md flex flex-col justify-center items-center w-[200px] h-[200px] sm:w-[200px] sm:h-[200px] md:w-[200px] md:h-[200px] lg:w-[300px] lg:h-[300px] xl:w-[300px] xl:h-[300px]";
     spanTitle.textContent = this.titleText;
@@ -38,9 +38,13 @@ class Carte {
     spanSizeMd.className = 'hidden sm:hidden md:hidden lg:block xl:block';
     spanSizeMd.textContent = '300px/300px';
 
+    spanDesc.className = 'text-white font-black ';
+    spanDesc.textContent = this.description;
+
     div.appendChild(spanTitle);
     div.appendChild(spanSizeMd);
     div.appendChild(spanSizeSm);
+    div.appendChild(spanDesc);
 
     return div;
   }
@@ -52,7 +56,7 @@ class Carte {
  */
 
 const cartes = [
-  new Carte("1"),
+  new Carte("1", "lonnngue description"),
   new Carte("2"),
   new Carte("3"),
   new Carte("4"),
@@ -103,3 +107,14 @@ btn.addEventListener('click', () => {
   document.body.classList.toggle('bg-blue-400');
   document.body.classList.toggle('bg-black');
 });
+
+
+const hiddenBtn = document.createElement('button');
+hiddenBtn.className = 'btn bg-black w-full md:w-full lg:w-36 hover:bg-yellow-600 font-medium rounded-md text-white px-4 py-5';
+hiddenBtn.textContent = 'Switch';
+
+hiddenBtn.addEventListener('click', () =>{
+  container.classList.toggle('hidden');
+})
+
+document.body.appendChild(hiddenBtn);
