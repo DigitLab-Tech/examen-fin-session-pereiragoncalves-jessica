@@ -1,44 +1,44 @@
-import '../css/style.css';
+import "../css/style.css";
 
 /**
  * Classe représentant une Carte.
  */
 
 class Carte {
-
   /**
    * Carte.
    * @param {string} titleText
    */
 
-  constructor(titleText, description) {   
+  constructor(titleText, description) {
     this.titleText = titleText;
     this.description = description;
-
   }
 
+  //Element est le bon type. Par contre, HTML non. Un type s'ecrit toujours en un seul mot comme le nom d'une class.-0.5
   /**
    * Génère le HTML pour la Carte.
-   * @return {Element HTML}
+   * @return {HTMLElement}
    */
 
   toHtml() {
-    const div = document.createElement('div');
-    const spanTitle = document.createElement('span');
-    const spanSizeSm = document.createElement('span');
-    const spanSizeMd = document.createElement('span');
-    const spanDesc = document.createElement('span');
+    const div = document.createElement("div");
+    const spanTitle = document.createElement("span");
+    const spanSizeSm = document.createElement("span");
+    const spanSizeMd = document.createElement("span");
+    const spanDesc = document.createElement("span");
 
-    div.className = "carte bg-black text-white font-black rounded-md flex flex-col justify-center items-center w-[200px] h-[200px] sm:w-[200px] sm:h-[200px] md:w-[200px] md:h-[200px] lg:w-[300px] lg:h-[300px] xl:w-[300px] xl:h-[300px]";
+    div.className =
+      "carte bg-black text-white font-black rounded-md flex flex-col justify-center items-center w-[200px] h-[200px] sm:w-[200px] sm:h-[200px] md:w-[200px] md:h-[200px] lg:w-[300px] lg:h-[300px] xl:w-[300px] xl:h-[300px]";
     spanTitle.textContent = this.titleText;
 
-    spanSizeSm.className = 'sm:block md:block lg:hidden xl:hidden';
-    spanSizeSm.textContent = '200px/200px';
+    spanSizeSm.className = "sm:block md:block lg:hidden xl:hidden";
+    spanSizeSm.textContent = "200px/200px";
 
-    spanSizeMd.className = 'hidden sm:hidden md:hidden lg:block xl:block';
-    spanSizeMd.textContent = '300px/300px';
+    spanSizeMd.className = "hidden sm:hidden md:hidden lg:block xl:block";
+    spanSizeMd.textContent = "300px/300px";
 
-    spanDesc.className = 'text-white font-black ';
+    spanDesc.className = "text-white font-black ";
     spanDesc.textContent = this.description;
 
     div.appendChild(spanTitle);
@@ -64,7 +64,7 @@ const cartes = [
   new Carte("6"),
   new Carte("7"),
   new Carte("8"),
-  new Carte("9")
+  new Carte("9"),
 ];
 
 /**
@@ -72,9 +72,9 @@ const cartes = [
  * @type {Element HTML}
  */
 
-const container = document.querySelector('.container');
+const container = document.querySelector(".container");
 
-cartes.forEach(carte => {
+cartes.forEach((carte) => {
   container.appendChild(carte.toHtml());
 });
 
@@ -83,38 +83,40 @@ cartes.forEach(carte => {
  * @type {Element HTML}
  */
 
-const btn = document.querySelector('.btn');
+const btn = document.querySelector(".btn");
+
+// Voici comment exprimer un liste d'un type type[]. Si non tu peux utiliser NodeList dans ce cas precis. Il est important de ne pas traduire les types. -0.5
 
 /**
  * Collection d'éléments HTML représentant les cartes.
- * @type {Liste d'Element HTML}
+ * @type {HTMLElement[] | NodeList}
  */
 
-const cartesHTML = document.querySelectorAll('.carte');
+const cartesHTML = document.querySelectorAll(".carte");
 
 /**
  * Écoute l'événement au bouton pour changer les couleurs du background des cartes, bouton et du body.
  * @event
  */
 
-btn.addEventListener('click', () => {
-  cartesHTML.forEach(carte => {
-    carte.classList.toggle('bg-black');
-    carte.classList.toggle('bg-red-300');
+btn.addEventListener("click", () => {
+  cartesHTML.forEach((carte) => {
+    carte.classList.toggle("bg-black");
+    carte.classList.toggle("bg-red-300");
   });
-  btn.classList.toggle('bg-black');
-  btn.classList.toggle('bg-red-300');
-  document.body.classList.toggle('bg-blue-400');
-  document.body.classList.toggle('bg-black');
+  btn.classList.toggle("bg-black");
+  btn.classList.toggle("bg-red-300");
+  document.body.classList.toggle("bg-blue-400");
+  document.body.classList.toggle("bg-black");
 });
 
+const hiddenBtn = document.createElement("button");
+hiddenBtn.className =
+  "btn bg-black w-full md:w-full lg:w-36 hover:bg-yellow-600 font-medium rounded-md text-white px-4 py-5";
+hiddenBtn.textContent = "Switch";
 
-const hiddenBtn = document.createElement('button');
-hiddenBtn.className = 'btn bg-black w-full md:w-full lg:w-36 hover:bg-yellow-600 font-medium rounded-md text-white px-4 py-5';
-hiddenBtn.textContent = 'Switch';
-
-hiddenBtn.addEventListener('click', () =>{
-  container.classList.toggle('hidden');
-})
+hiddenBtn.addEventListener("click", () => {
+  container.classList.toggle("hidden");
+});
 
 document.body.appendChild(hiddenBtn);
